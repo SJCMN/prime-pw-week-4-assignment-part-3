@@ -5,11 +5,14 @@ let basket = []
 const maxItems = 5;
 
 function addItem ( item ) {
+  let extraItems
   if (full() === false){
   basket.push(item);
-} else if (full() === true) {
+} else {
+  if (full() === true) {
   for (i = maxItems-1; i < basket.length; i++ ){
-    let extraItems = basket[i]
+    extraItems = basket[i]
+  }
     console.log(`Sorry your cart is full, please remove ${extraItems} from your cart`, listItems(basket));
     return false;
   }
@@ -52,9 +55,33 @@ console.log(`Basket is now ${basket}`);
 function full() {
   if (basket.length >= maxItems){
     return true;
-  } else if (basket.length < maxItems) {
+  } else {
+    if (basket.length < maxItems) {
     return false;
+    }
   }
 }
 console.log(basket, basket.length);
 console.log('Your basket is full' ,full());
+
+basket = ["napkins", "forks", "ice", "oranges", "grapes", "pears", "peaches"]
+
+console.log(`Adding cups to basket`, addItem('cups'));
+
+function removeItem( item ) {
+  const removed = basket.indexOf(item);
+  let result;
+  if (removed >= 0) {
+    basket.splice(removed,1);
+    result = basket;
+      console.log(`Your ${item} have been removed from your basket`);
+  } else {
+    result = null;
+      console.log(`Your basket does not contain any ${item}`);
+      }
+    return result;
+  }
+
+
+console.log(`Please remove Forks from my basket`, removeItem('forks'));
+console.log(`Please remove Spoons from my basket`, removeItem('spoons'));
