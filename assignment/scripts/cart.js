@@ -1,15 +1,22 @@
 console.log('***** Cart Functions *****');
 // Make sure to test all functions here in the JS file!
 // We want to see how you are testing your code!!!
+
+// basket array set to empty, use let to clear array easily
 let basket = []
 const maxItems = 5;
 
+// addItem should
+// input param item
+// add new item to basket array
+// return true when item is added
+
 function addItem ( item ) {
   let extraItems
-  if (full() === false){
+  if (isFull() === false){
   basket.push(item);
 } else {
-  if (full() === true) {
+  if (isFull() === true) {
   for (i = maxItems-1; i < basket.length; i++ ){
     extraItems = basket[i]
   }
@@ -30,6 +37,10 @@ console.log(addItem ('oranges'));
 console.log(addItem ('grapes'));
 console.log(addItem ('cake'));
 
+// listitems should
+// loop over items in basket
+// log each item
+
 function listItems ( yourBasket ){
   for (const item of yourBasket) {
     console.log(item);
@@ -39,6 +50,8 @@ function listItems ( yourBasket ){
 
 console.log('Your basket contains: ', listItems(basket));
 
+// empty should
+// set contents of array to empty array
 function empty () {
   basket = [];
   return basket;
@@ -52,7 +65,12 @@ console.log(`Adding apples to basket`, addItem('apples'));
 
 console.log(`Basket is now ${basket}`);
 
-function full() {
+// isFull should
+// prevent more than maxItems being added to array
+// if item added return true
+// if basket is full return false
+
+function isFull() {
   if (basket.length >= maxItems){
     return true;
   } else {
@@ -62,12 +80,21 @@ function full() {
   }
 }
 console.log(basket, basket.length);
-console.log('Your basket is full' ,full());
+console.log('Your basket is full' ,isFull());
 
+// resetting basket with contents
 basket = ["napkins", "forks", "ice", "oranges", "grapes", "pears", "peaches"]
 
+// testing loop from addItem to log each extra item
+// loop currently not working
 console.log(`Adding cups to basket`, addItem('cups'));
 
+
+// removeItem should
+// input param item
+// use Array.indexOf() to find first match in basket array
+// use Array.splice(index, count) to remove found item from basket
+// return null if item was not found
 function removeItem( item ) {
   const removed = basket.indexOf(item);
   let result;
